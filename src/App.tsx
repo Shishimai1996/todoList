@@ -1,26 +1,33 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react';
+//import { Route } from 'react-router-dom';
 
-function App() {
+import TodoList from './components/TodoList';
+import NewTodo from './components/NewTodo';
+import { Todo } from './todo.model';
+
+// function App() {
+//   return (
+//     <div className="App">
+     
+//     </div>
+//   );
+// }
+//functionComponent type
+const App: React.FC = () => {
+  const [todos, setTodos] = useState <Todo[]>([]); //by todo.model.ts
+  const todoAddHandler = (text: string) => {
+    setTodos(prevTodos => [...prevTodos,{ id: Math.random().toString(), text: text },]); //既存のステートを残して新規入力値を追加　★
+  };
+
+  const todoDeleteHandler = (todoId: string) => {
+    setTodos(prevTodos => prevTodos.filter(todo => todo.id !== todoId))//todoIdとtodo.idが一致したら削除。しなかったら新しい配列に格納する。★
+  }
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <NewTodo onAddTodo={todoAddHandler} />
+      <TodoList items={todos} onDeleteTodo={todoDeleteHandler} />
     </div>
   );
-}
+};
 
 export default App;
