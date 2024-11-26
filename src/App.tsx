@@ -19,7 +19,7 @@ const App: React.FC = () => {
     setTodos((prevTodos) => [
       ...prevTodos,
       { id: Math.random().toString(), text: text },
-    ]); //既存のステートを残して新規入力値を追加.。　★
+    ]); //既存のステートを残して新規入力値を追加。
   };
 
   const todoDeleteHandler = (todoId: string) => {
