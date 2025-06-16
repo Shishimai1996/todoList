@@ -1,20 +1,12 @@
 import React, { useState } from "react";
-//import { Route } from 'react-router-dom';
-
 import TodoList from "./components/TodoList";
 import NewTodo from "./components/NewTodo";
 import { Todo } from "./todo.model";
+import { CountUp } from "./components/CountUp";
 
-// function App() {
-//   return (
-//     <div className="App">
-
-//     </div>
-//   );
-// }
-//functionComponent type
 const App: React.FC = () => {
   const [todos, setTodos] = useState<Todo[]>([]); //by todo.model.ts
+
   const todoAddHandler = (text: string) => {
     setTodos((prevTodos) => [
       ...prevTodos,
@@ -28,7 +20,12 @@ const App: React.FC = () => {
   return (
     <div className="App">
       <NewTodo onAddTodo={todoAddHandler} />
-      <TodoList items={todos} onDeleteTodo={todoDeleteHandler} />
+      {todos.length !== 0 && (
+        <>
+          <CountUp count={todos.length} />
+          <TodoList items={todos} onDeleteTodo={todoDeleteHandler} />
+        </>
+      )}
     </div>
   );
 };
