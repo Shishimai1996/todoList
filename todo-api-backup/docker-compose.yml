@@ -12,6 +12,11 @@ services:
       - '5432:5432'
     volumes:
       - db-data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U todo -d todo_db"]
+      interval: 5s
+      timeout: 2s
+      retries: 10
 
   backend:
     build:
@@ -24,7 +29,9 @@ services:
     ports:
       - '3001:3001'
     depends_on:
-      - db
+      db:
+        condition: service_healthy
+    restart: on-failure
 
   frontend:
     image: node:18
