@@ -25,13 +25,15 @@ services:
     working_dir: /usr/src/app
     environment:
       DATABASE_URL: 'postgresql://todo:todo@db:5432/todo_db?schema=public'
-    command: npm run start:prod
+    command: sh -c "sleep 10 && npm run start:prod"
     ports:
       - '3001:3001'
     depends_on:
       db:
         condition: service_healthy
     restart: on-failure
+    networks:
+      - default
 
   frontend:
     image: node:18
