@@ -1,46 +1,60 @@
-# Getting Started with Create React App
+# Todo App Architecture
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This repository contains a Todo application built with a React frontend and a NestJS backend.
 
-## Available Scripts
+## Overall Structure
 
-In the project directory, you can run:
+- `todo/`: React frontend
+- `todo-api/`: NestJS backend with Prisma and PostgreSQL
 
-### `npm start`
+The frontend runs on `http://localhost:3000` and communicates with the backend REST API at `http://localhost:3001`.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+---
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## Frontend (`todo/`)
 
-### `npm test`
+- `src/App.tsx`:
+  - Fetches the todo list from `GET /todos` on load
+  - Creates a new todo with `POST /todos`
+  - Deletes a todo with `DELETE /todos/:id`
+- `src/todo.model.ts`: Todo type definition
+- `src/components/NewTodo.tsx`: Input form for adding a new todo
+- `src/components/TodoList.tsx`: Todo list display and delete button
+- `src/components/CountUp.tsx`: Todo count display
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+The frontend is built with Create React App.
 
-### `npm run build`
+---
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Backend (`todo-api/`)
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- NestJS application
+- `src/main.ts`: bootstrap and CORS setup
+- `src/todos/todos.controller.ts`: REST API endpoints
+  - `GET /to  - `GET /to  - `GET /to  - `GET /to  - `GET `
+- `src/todos/to- `src/todos/to- business- `src/todos/to- `src/todos/to- business- `src/todos/to- `src/todos/to- business- `src/todosa/schema.prisma`: Prisma - `src/todos/to- `src/tohe- `src/todos/to- `src/todos/to- business- `src/todos/toser- `src/todos/to- `src/todos/to- business- `src/todos/to- `src/todos/to- business- `src/todos/to- `src/todos/to- bu`: Todo - `src/todos/to# Docker- `src/todosnt En- `src/todos/to- `src/todos/to- business- `src/t the- `src/todos/to- `src/todos/to- busineQL
+------------------------------------------t d------------------------------------------running the frontend, backend, and database together.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+---
 
-### `npm run eject`
+## Runn## Runn## Runn## Runn## Runn## Runn## Runn## Runn## Runn## Runn## R`
+## Runn## Runn## Runn## Runn## Runn## Runn## Rupm run start:dev
+```
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+### Running with Docker
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+```bash
+cd todo-api
+docker compose up -d
+```
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+---
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+## Architecture Flow
 
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+1. The browser loads the React frontend.
+2. The frontend calls `GET /todos` on the backend REST API.
+3. The backend retrieves todos from PostgreSQL using Prisma.
+4. The frontend renders the todo list and handles add/delete actions.
+5. Adding a todo sends `POST /todos`; deleting sends `DELETE /todos/:id`.
+6. The backend updates the database and returns the result.
