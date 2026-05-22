@@ -1,17 +1,82 @@
-ul {
-  list-style: none;
-  width: 90%;
-  max-width: 40rem;
-  margin: 2rem auto;
-  padding: 0;
+.stats {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 1.25rem;
 }
 
+.stat {
+  flex: 1;
+  background: #F1F5F9;
+  border-radius: 8px;
+  padding: 0.75rem 1rem;
+}
+
+.stat-label { font-size: 12px; color: #64748B; margin-bottom: 4px; }
+.stat-value { font-size: 20px; font-weight: 600; color: #0F172A; }
+
+.section-label {
+  font-size: 12px;
+  font-weight: 500;
+  color: #94A3B8;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+
+ul { list-style: none; display: flex; flex-direction: column; gap: 8px; padding: 0; margin: 0; }
+
 li {
-  margin: 1rem 0;
-  padding: 1rem;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
+  background: #fff;
+  border: 0.5px solid #E2E8F0;
+  border-radius: 12px;
+  padding: 0.9rem 1rem;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  transition: border-color 0.15s;
+}
+
+li:hover { border-color: #0EA5E9; }
+
+.todo-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #0EA5E9;
+  flex-shrink: 0;
+}
+
+.todo-text { flex: 1; font-size: 14px; color: #0F172A; }
+
+.todo-tag {
+  font-size: 11px;
+  padding: 2px 8px;
+  border-radius: 20px;
+  background: #E0F2FE;
+  color: #0369A1;
+  font-weight: 500;
+}
+
+.delete-btn {
+  width: 28px;
+  height: 28px;
+  border: none;
+  background: transparent;
+  color: #94A3B8;
+  cursor: pointer;
   border-radius: 6px;
   display: flex;
-  justify-content: space-between;
   align-items: center;
+  justify-content: center;
+  font-size: 15px;
+  font-family: inherit;
+}
+
+.delete-btn:hover { background: #FEF2F2; color: #DC2626; }
+
+.footer {
+  margin-top: 2rem;
+  font-size: 12px;
+  color: #94A3B8;
+  text-align: center;
 }
