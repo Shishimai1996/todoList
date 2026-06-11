@@ -9,6 +9,7 @@ interface TodoListProps {
 const TodoList: React.FC<TodoListProps> = (props) => {
   return (
     <div>
+      {props.items.length === 0 && <div style={{padding: '1rem', color: '#64748B'}}>No tasks yet — add your first task!</div>}
       <div className="stats">
         <div className="stat">
           <div className="stat-label">Total tasks</div>

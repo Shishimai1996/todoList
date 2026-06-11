@@ -6,15 +6,15 @@ import { TodoRepository } from './todo.repository';
 export class TodosService {
   constructor(private readonly repo: TodoRepository) {}
 
-  async findAll(): Promise<Todo[]> {
-    return this.repo.findAll();
+  async findAll(userId: string): Promise<Todo[]> {
+    return this.repo.findAll(userId);
   }
 
-  async create(text: string): Promise<Todo> {
-    return this.repo.create(text);
+  async create(text: string, userId: string): Promise<Todo> {
+    return this.repo.create(text, userId);
   }
 
-  async remove(id: string): Promise<void> {
-    return this.repo.remove(id);
+  async remove(id: string, userId: string): Promise<void> {
+    return this.repo.remove(id, userId);
   }
 }

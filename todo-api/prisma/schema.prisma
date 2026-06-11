@@ -9,6 +9,15 @@ datasource db {
 }
 
 model Todo {
-  id   String @id @default(uuid())
-  text String
+  id     String @id @default(uuid())
+  text   String
+  user   User   @relation(fields: [userId], references: [id])
+  userId String
+}
+
+model User {
+  id    String @id @default(uuid())
+  email String @unique
+  hash  String
+  todos Todo[]
 }

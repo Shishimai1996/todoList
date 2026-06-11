@@ -7,13 +7,15 @@ type NewTodoProps = {
 
 const NewTodo: React.FC<NewTodoProps> = (props) => {
   const textInputRef = useRef<HTMLInputElement>(null);
+  const [enteredText, setEnteredText] = React.useState("");
 
   const todoSubmitHandler = (event: React.FormEvent) => {
     event.preventDefault();
-    const enteredText = textInputRef.current!.value;
-    if (enteredText.trim()) {
-      props.onAddTodo(enteredText);
-      textInputRef.current!.value = "";
+    const text = enteredText.trim();
+    if (text) {
+      props.onAddTodo(text);
+      setEnteredText("");
+      if (textInputRef.current) textInputRef.current.value = "";
     }
   };
 
@@ -35,8 +37,9 @@ const NewTodo: React.FC<NewTodoProps> = (props) => {
             ref={textInputRef}
             placeholder="What needs to be done?"
             onKeyDown={handleKeyDown}
+            onChange={(e) => setEnteredText(e.target.value)}
           />
-          <button className="add-btn" onClick={todoSubmitHandler}>
+          <button className="add-btn" onClick={todoSubmitHandler} disabled={!enteredText.trim()}>
             + Add task
           </button>
         </div>
