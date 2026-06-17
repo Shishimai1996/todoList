@@ -15,6 +15,9 @@ A full-stack Todo application deployed on AWS EC2.
 
 ## Architecture
 
+<img width="601" height="647" alt="image" src="https://github.com/user-attachments/assets/06813c23-ede5-41ea-8587-719ba2cedea6" />
+
+
 Browser → nginx (port 80) → NestJS API (port 3001) → PostgreSQL
 
 All services run in Docker containers on a single EC2 instance (t2.micro).
