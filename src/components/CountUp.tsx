@@ -5,5 +5,5 @@ interface ICountUp {
 }
 
 export const CountUp: React.FC<ICountUp> = ({ count }) => {
-  return <p>やること{count}</p>;
+  return <p>Tasks {count}</p>;
 };
